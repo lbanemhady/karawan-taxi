@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>الصفحة الرئيسية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Tajawal', sans-serif; }
+</style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 min-h-screen flex items-center justify-center p-6">
+
+  <div class="max-w-md w-full text-center">
+    <div class="mb-8">
+      <div class="w-20 h-20 bg-amber-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-4xl">🚕</div>
+      <h1 id="company-name" class="text-3xl font-black text-white mb-2">منصة النقل</h1>
+      <p class="text-slate-400">اشتراك يومي بسيط بدلاً من عمولة كل مشوار</p>
+    </div>
+
+    <div class="space-y-4">
+      <a href="dispatcher.html" class="block bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-lg py-4 rounded-xl transition">
+        🏢 دخول الشركة (لوحة التحكم)
+      </a>
+      <a href="driver.html" class="block bg-slate-700 hover:bg-slate-600 text-white font-bold text-lg py-4 rounded-xl transition border border-slate-600">
+        🚗 دخول السائق
+      </a>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-700 text-slate-400 text-sm">
+      لطلب مشوار عن طريق الهاتف، اتصل على
+      <span id="company-phone" class="text-amber-400 font-bold text-base block mt-1" dir="ltr">32053207</span>
+    </div>
+  </div>
+
+<script type="module">
+  import { db, DEFAULT_COMPANY } from "./firebase-init.js";
+  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  document.getElementById('company-name').textContent = DEFAULT_COMPANY.name;
+  document.getElementById('company-phone').textContent = DEFAULT_COMPANY.phone;
+
+  (async () => {
+    try {
+      const snap = await getDoc(doc(db, "settings", "config"));
+      if (snap.exists()) {
+        const d = snap.data();
+        if (d.companyName) document.getElementById('company-name').textContent = d.companyName;
+        if (d.companyPhone) document.getElementById('company-phone').textContent = d.companyPhone;
+      }
+    } catch (e) { /* تجاهل إذا Firebase غير مهيأ بعد */ }
+  })();
+</script>
+</body>
+</html>
