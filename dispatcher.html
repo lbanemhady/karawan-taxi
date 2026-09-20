@@ -20,10 +20,9 @@
   <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 text-center">
     <div class="text-4xl mb-3">🔒</div>
     <h2 class="text-xl font-bold mb-4">دخول الموظفين</h2>
-    <input id="pin-input" type="password" inputmode="numeric" placeholder="أدخل الرمز السري" class="w-full border border-slate-300 rounded-lg px-4 py-3 text-center text-lg tracking-widest mb-3" />
+    <input id="pin-input" type="password" inputmode="text" placeholder="أدخل الرمز السري" class="w-full border border-slate-300 rounded-lg px-4 py-3 text-center text-lg tracking-widest mb-3" />
     <button id="pin-submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded-lg">دخول</button>
     <p id="pin-error" class="text-red-500 text-sm mt-2 hidden">رمز خاطئ</p>
-    <p class="text-slate-400 text-xs mt-4">الرمز الافتراضي: 1234 (غيّره من ملف dispatcher.html)</p>
   </div>
 </div>
 
@@ -161,7 +160,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // ====== رمز الدخول السري — غيّره لأي رقم تريده ======
-const DISPATCHER_PIN = "1234";
+const DISPATCHER_PIN = "2200cvcv";
 
 const pinScreen = document.getElementById('pin-screen');
 const appEl = document.getElementById('app');
@@ -377,4 +376,4 @@ function escapeHtml(s) {
 }
 </script>
 </body>
-</html>
+  </html>    
